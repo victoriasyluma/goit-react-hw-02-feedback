@@ -1,28 +1,23 @@
 import PropTypes from 'prop-types';
 import styles from './FeedbackOptions.module.scss';
-import { Component } from 'react';
 
-export class FeedbackOptions extends Component {
-  render() {
-    const { options, onLeaveFeedback } = this.props; // options:{key, label}[]
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  const buttons = options.map(({ key, label }) => {
+    const onClick = () => {
+      onLeaveFeedback({ key });
+    };
 
-    const buttons = options.map(({ key, label }) => {
-      const onClick = () => {
-        onLeaveFeedback({ key });
-      };
+    return (
+      <li className={styles.item} key={key}>
+        <button className={styles.button} onClick={onClick}>
+          {label}
+        </button>
+      </li>
+    );
+  });
 
-      return (
-        <li className={styles.item} key={key}>
-          <button className={styles.button} onClick={onClick}>
-            {label}
-          </button>
-        </li>
-      );
-    });
-
-    return <ul className={styles.list}>{buttons}</ul>;
-  }
-}
+  return <ul className={styles.list}>{buttons}</ul>;
+};
 
 FeedbackOptions.propTypes = {
   options: PropTypes.arrayOf(

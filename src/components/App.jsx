@@ -21,7 +21,6 @@ export class App extends Component {
     const value = this.state[key];
 
     this.setState({
-      ...this.state,
       [key]: value + 1,
     });
   };

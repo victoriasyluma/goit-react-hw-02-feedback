@@ -18,10 +18,12 @@ export class App extends Component {
   ];
 
   onLeaveFeedback = ({ key }) => {
-    const value = this.state[key];
+    this.setState((state) => {
+      const value = state[key];
 
-    this.setState({
-      [key]: value + 1,
+      return {
+        [key]: value + 1,
+      };
     });
   };
 
